@@ -494,23 +494,22 @@ def game(controles):
         elif xhand>950:
             xhand=950
         mano.mostrar(manoimg,0,0,angulo).cuadrado()
-        
-        for i in range(7):
-            if botones_menu[i].collidepoint((Mx,My)):
-                xhand=mx[i]-40
-                yhand=150
-                casilla=True
-            
-        for i in range(35):
-            if i%2==0:
-                if superficies[i].collidepoint((Mx,My)):
-                    xhand=celdas[i*2][0]-25
-                    yhand=celdas[i*2][1]+40
-          
-            else:
-                if superficies[i].collidepoint((Mx,My)):
-                    xhand=celdas[i*2][0]-25
-                    yhand=celdas[i*2][1]+40        
+        if controles:
+            for i in range(7):
+                if botones_menu[i].collidepoint((Mx,My)):
+                    xhand=mx[i]-40
+                    yhand=150                  
+            for i in range(35):
+                if i%2==0:
+                    if superficies[i].collidepoint((Mx,My)):
+                        
+                        xhand=celdas[i*2][0]-25
+                        yhand=celdas[i*2][1]+40
+                else:
+                    if superficies[i].collidepoint((Mx,My)):
+                        
+                        xhand=celdas[i*2][0]-25
+                        yhand=celdas[i*2][1]+40
         if al<len(Alien1)-0.3:
             al+=0.3
         else:
