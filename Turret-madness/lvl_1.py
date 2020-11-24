@@ -4,7 +4,7 @@ import random as r
 import sys
 import math as m
 import numpy as np
-def game():
+def game(controles):
     Save=open("Save.txt","r")
     state1=Save.readline()
     st1=Save.readline()
