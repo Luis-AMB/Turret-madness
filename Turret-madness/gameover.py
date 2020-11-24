@@ -94,12 +94,6 @@ def main_menu(controles):
         clock.tick(60)
 
 
-def reiniciar():
-    clock.tick(60)
-
-
-def salir():
-    clock.tick(60)
 
 
 main_menu()
