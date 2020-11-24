@@ -336,16 +336,16 @@ def game(controles):
                 sys.exit()
             if event.type==p.KEYDOWN:
                 if event.key == p.K_s or event.key == p.K_DOWN:
-                    if not moverd:
+                    if not moverd and not controles:
                         moverd = True
                 elif event.key == p.K_w or event.key == p.K_UP:
-                    if not movera:
+                    if not movera and  not controles:
                         movera = True
                 elif event.key == p.K_a or event.key == p.K_LEFT:
-                    if not moverl:
+                    if not moverl and not controles:
                         moverl = True
                 elif event.key == p.K_d or event.key == p.K_RIGHT:
-                    if not moverr:
+                    if not moverr and not controles:
                         moverr = True
                 elif event.key== p.K_RETURN:
                     est=mano.select()
@@ -356,12 +356,10 @@ def game(controles):
                     canalpause.play(pausesound)
                     pause=True
             elif event.type==p.MOUSEBUTTONDOWN:
-                if event.button==1:
-                    print("si")
-                    click=True
+                if event.button==1 and controles:
                     est=mano.select()
                     canalselect.play(soundselect)
-                if event.button==3:
+                if event.button==3 and controles:
                     est1=mano.select()
         Mx,My=p.mouse.get_pos()
         
