@@ -109,9 +109,8 @@ def main_menu():
             if click:
                 click=False
                 canal1.play(select)
-                control.controles_1(
-        else:
-            
+                control.controles_1()
+        else:   
             k2=0
         for event in p.event.get():
             if event.type==p.QUIT:
