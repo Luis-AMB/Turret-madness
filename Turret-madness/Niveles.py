@@ -4,7 +4,7 @@ import numpy as np
 import lvl_1
 p.init()
 p.mixer.init()
-def niveles():
+def niveles(controles):
     p.display.set_caption("Tower-Madness")
     font_1= p.font.Font('Fuentes\\spacerunnertwoital.TTF',100)
     clock=p.time.Clock()
@@ -92,8 +92,8 @@ def niveles():
         xs.append((i)*(200)/5+xesc[2]-80)
         ys.append(720/2+80)
     running=True
-    click=False
     while running:
+        click=False
         for event in p.event.get():
             if event.type==p.QUIT:
                 running=False
@@ -112,6 +112,7 @@ def niveles():
         if xesc[0]-100<=mx<=xesc[0]+100 and yesc[0]-100<=my<yesc[0]+100:
             if click:
                 nvl1=True
+                lvl_1.game(controles)
                 click=False
             if k2==0:
                 k2+=1
@@ -171,6 +172,7 @@ def niveles():
                 k1+=1
                 canal1.play(tap)
             if click:
+                click=False
                 break
         else:
             k1=0
