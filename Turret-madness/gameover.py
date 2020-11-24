@@ -1,6 +1,6 @@
 import pygame as p
 import sys
-#import Clases_juego
+import lvl_1
 
 p.init()
 p.mixer.init()
@@ -31,7 +31,7 @@ def draw_txt(texto, font, color, surface, x, y):
     surface.blit(textobj, textrect)
 
 
-def main_menu():
+def main_menu(controles):
     running = True
     click = False
     boton_1 = None
@@ -67,7 +67,8 @@ def main_menu():
             canal1.play(tap)
             if click:
                 canal2.play(select)
-                reiniciar()
+                lvl_1.game(controles)
+                break
         if boton_2.collidepoint((mx, my)):
             pantalla.blit(bg_image, boton_2, boton_2)
             boton_2 = pantalla.blit(boton, (pos[0], pos[1] + 95))
@@ -76,7 +77,7 @@ def main_menu():
             canal1.play(tap)
             if click:
                 canal1.play(select)
-                salir()
+                break
         for event in p.event.get():
             if event.type == p.QUIT:
                 running = False
