@@ -112,7 +112,6 @@ def niveles(controles):
         if xesc[0]-100<=mx<=xesc[0]+100 and yesc[0]-100<=my<yesc[0]+100:
             if click:
                 nvl1=True
-                lvl_1.game(controles)
                 click=False
             if k2==0:
                 k2+=1
@@ -183,7 +182,7 @@ def niveles(controles):
             else:
                 nvl1=False
                 j[0]=0
-                lvl_1.game()
+                lvl_1.game(controles)
                 state1,state2,state3,st1,st2,st3=guardado()
                 states=[state1,state2,state3]
                 est=[]
