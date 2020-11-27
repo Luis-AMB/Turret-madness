@@ -144,21 +144,6 @@ def historia():
         def insertar(self,q1,q2):
             for d in range(len(q2)):
                 q1.append(len(self.hh.guiones(q2[d])))
-    ll=textos(100,500)
-    for d in range(len(guion0)):
-        a0.append(len(ll.guiones(guion0[d])))
-    ff=textos(210,500)
-    for d in range(len(guion1)):
-        a1.append(len(ff.guiones(guion1[d])))
-    qq=textos(200,500)
-    for d in range(len(guion2)):
-        a2.append(len(qq.guiones(guion2[d])))
-    ww=textos(800,500)
-    for d in range(len(guion3)):
-        a3.append(len(ww.guiones(guion3[d])))
-    ee=textos(500,500)
-    for d in range(len(guion4)):
-        a4.append(len(ee.guiones(guion4[d])))
     ll=textos(x0,y0)
     p0=añadir(ll)
     p0.insertar(a0,guion0)
