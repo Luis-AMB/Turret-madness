@@ -394,7 +394,18 @@ def game(controles):
                     for h in range(len(N)): 
                         if enemigos[h].colision1(balas[i//2].x,balas[i//2].y):
                             balas[i//2].mostrar(balimg[a[i-1]],False,a[i-1],True)
-                            daño[h]+=10
+                            #daño bala 1
+                            if a[i-1]==0 or a[i-1]==1 or a[i-1]==2 or a[i-1]==6:                                
+                                daño[h]+=10
+                            #daño bala 2
+                            elif a[i-1]==3:
+                                daño[h]+=12
+                            #daño bala 3
+                            elif a[i-1]==4:
+                                daño[h]+=100
+                            #daño bala 4
+                            elif a[i-1]==5:
+                                daño[h]+=15
                             if daño[h]>=vidaenemigototal[h]:
                                 contadormuertes += 1
                                 X[h]=5000
@@ -415,6 +426,8 @@ def game(controles):
                             nb=-1
                             turr=-1
                         if celdas[i+1].state:
+                            if (nb+1)>3:
+                                nb=2
                             dinero-=(nb+1)*1000
                             celdas[i+1]=celda(est[0],est[1],est[2])
                     est=(0,0,0)
