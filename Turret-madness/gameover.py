@@ -1,7 +1,12 @@
 import pygame as p
 import sys
+import lvl_1
+import lvl_2
+import nivel
+import control
+import Niveles
 #import Clases_juego
-
+import imp
 p.init()
 p.mixer.init()
 font = p.font.Font('Fuentes\\spacerunnertwoital.TTF', 35)
@@ -15,7 +20,7 @@ bg_image = p.image.load("images\\fondgameover.jpg")
 bg_image = bg_image.convert()
 gameover =p.image.load("images\\gameover (2).png")
 boton = p.image.load("images\\botonnaranja.png")
-select = p.mixer.Sound('efectos\\sonido_boton.mp3')
+select = p.mixer.Sound('efectos\\sonido_boton.wav')
 tap = p.mixer.Sound('efectos\\boton_tap.mp3')
 p.mixer.music.load("efectos\\fondo.mp3")
 p.mixer.music.play(-1)
@@ -23,13 +28,11 @@ p.mixer.music.set_volume(0.2)
 canal1 = p.mixer.Channel(0)
 canal2 = p.mixer.Channel(1)
 
-
 def draw_txt(texto, font, color, surface, x, y):
     textobj = font.render(texto, True, color)
     textrect = textobj.get_rect()
     textrect.topleft = (x, y)
     surface.blit(textobj, textrect)
-
 
 def main_menu():
     running = True
@@ -53,7 +56,6 @@ def main_menu():
             pantalla.blit(bg_image, boton_1, boton_1)
             pantalla.blit(bg_image, boton_2, boton_2)
 
-
         mx, my = p.mouse.get_pos()
         boton_1 = pantalla.blit(boton, (pos[0]+478, pos[1] + 165))
         boton_2 = pantalla.blit(boton, (pos[0]+478, pos[1] + 265))
@@ -61,7 +63,6 @@ def main_menu():
         draw_txt("Reiniciar", font, (255, 255, 255), pantalla, 518, 368)
         draw_txt("Salir", font, (0, 0, 0), pantalla, 560, 470)
         draw_txt("Salir", font, (255, 255, 255), pantalla, 558, 468)
-
 
         if boton_1.collidepoint((mx, my)):
             pantalla.blit(bg_image, boton_1, boton_1)
@@ -71,7 +72,13 @@ def main_menu():
             canal1.play(tap)
             if click:
                 canal2.play(select)
-                reiniciar()
+                running = False
+                if nivel.levelok == 1:
+                    lvl_1.game(True)
+                elif nivel.levelok == 2:
+                    lvl_2.game(True)
+                sys.exit()
+                clock.tick(60)
         if boton_2.collidepoint((mx, my)):
             pantalla.blit(bg_image, boton_2, boton_2)
             boton_2 = pantalla.blit(boton, (pos[0]+476, pos[1] + 263))
@@ -90,19 +97,10 @@ def main_menu():
                     running == False
             elif event.type == p.MOUSEBUTTONDOWN:
                 if (event.button == 1 and boton_1.collidepoint((mx, my))) or (
-                        event.button == 1 and boton_2.collidepoint((mx, my))) or (
-                        event.button == 1 and boton_3.collidepoint((mx, my))):
+                        event.button == 1 and boton_2.collidepoint((mx, my))):
                     click = True
         p.display.update()
         clock.tick(60)
-
-
-def reiniciar():
-    running = False
-    import lvl_1
-    sys.exit()
-    clock.tick(60)
-
 
 def salir():
     running = False
@@ -110,4 +108,3 @@ def salir():
     clock.tick(60)
 
 
-main_menu()
