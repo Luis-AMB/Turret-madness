@@ -2,6 +2,7 @@ import pygame as p
 import sys
 import numpy as np
 import lvl_1
+import lvl_2 
 p.init()
 p.mixer.init()
 def niveles(controles):
@@ -182,7 +183,7 @@ def niveles(controles):
             else:
                 nvl1=False
                 j[0]=0
-                lvl_1.game(controles)
+                lvl_1.game(True)
                 state1,state2,state3,st1,st2,st3=guardado()
                 states=[state1,state2,state3]
                 est=[]
