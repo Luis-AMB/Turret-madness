@@ -589,6 +589,7 @@ def game(controles):
         enemigos=[]
         for i in range(len(Aliens)):
             enemigos.append(enemigo(X[i],Y[i],vidaenemigo[i]-daño[i],vidaenemigototal[i]))
+            Y[i]+=vely[i]
             if vel[i]!=0:
                 if -100<=X[i]<=1380:
                     X[i]-=vel[i]
@@ -619,7 +620,17 @@ def game(controles):
                 for k in range(1,10,2):
                     if m.sqrt((eval("X"+str([j]))-(185+i*150))**2+(eval("Y"+str([j]))-(celdas[int(str(i)+str(k))-1][1]))**2)<40:
                         if not celdas[int(str(i)+str(k))].state:
-                            vel[j]=0
+                            if N[j]==1:
+                                if habilidad11[j]:
+                                    vel[j]=vel[j]
+                                    tiempo11[j]+=1
+                                    nodaño=False
+                                    if tiempo11[j]==20:
+                                        habilidad11[j]=False
+                                else:
+                                    vel[j]=0
+                            else:
+                                vel[j]=0
                             if N[j] == 1:
                                 enemigos[j].mostrar(Alien1attack[int(al1)]).vida()
                                 if salud[int(str(i)+str(k))]>=0:
@@ -650,16 +661,71 @@ def game(controles):
                                     celdas[int(str(i)+str(k))].state=True
                             PP=Torreta(celdas[int(str(i)+str(k))-1][0]+40,celdas[int(str(i)+str(k))-1][1]+40,salud[int(str(i)+str(k))],vida[a[int(str(i)+str(k))-1]])
                             PP.mostrar(turrets[a[int(str(i)+str(k))-1]]).vida()
+                            listax.append(celdas[int(str(i)+str(k))-1][0]+40)
+                            listay.append(celdas[int(str(i)+str(k))-1][1]+40)
                         else:
-                            if X[j] <= 1500 and N[i] == 1:
+                            if X[j] <= 1500 and N[j] == 1:
                                 vel[j] = 5
-                            elif X[j] <= 1500 and N[i] == 2:
+                                #vely[j]=0
+                            elif X[j] <= 1500 and N[j] == 2:
                                 vel[j] = 3
-                            if N[j]==1:
+                                """if (vidaenemigo[j]-daño[j])<=100:
+                                    posicion[j]+=1
+                                    if posicion[j]>=8:
+                                        habilidad2[j]=False
+                                    else:
+                                        habilidad2[j]=True"""
+                                #if habilidad2[j]:
+                                #vely[j]=10
+                                #else:
+                                    #vely[j]=0
+                            elif X[j] <= 1500 and N[j] == 3:
                                 vel[j] = 5
+                                #vely[j]=0
+                            if N[j]==1:
+                                vel[j] = 2
+                                #vely[j]=0
                             elif N[j]==2:
                                 vel[j] = 3
-            X[j]-=vel[j]         
+                                #if habilidad2[j]:
+                                #vely[j]=10
+                                #else:
+                                    #vely[j]=0
+                            if N[j]==3:
+                                vel[j]= 2
+                                #vely[j]=0
+                        
+                        #if vidaenemigo[j]-daño[j]<=100:
+                        if (vidaenemigo[j]-daño[j])<=100:
+                            if N[j]==2:
+                                if Y[j]==640:
+                                    ulinea[j]=True
+                                tiempo1[j]+=1
+                                if tiempo1[j]<5:
+                                    habilidad2[j]=True
+                                    #print(tiempo1)
+                                    #print(habilidad2)
+                                else:
+                                    habilidad2[j]=False
+                                if vel[j]==0:
+                                    habilidad2[j]=False
+                            if N[j]==2:
+                                #print(habilidad2[j])
+                                if habilidad2[j]:
+                                    if ulinea[j]:
+                                        vely[j]=-10
+                                    else:
+                                        vely[j]=10
+                                else:
+                                    vely[j]=0
+                            if N[j]==1 or N[j]==3:
+                                vely[j]=0
+                        else:
+                            if N[j]==1 or N[j]==3:
+                                vely[j]=0
+            X[j]-=vel[j]
+            Y[j]+=vely[j]
+            
         
         if countent>0:
             countent-=0.05
