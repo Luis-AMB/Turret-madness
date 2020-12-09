@@ -263,6 +263,7 @@ def game(controles):
         N.append(n)
         Aliens.append(Alien2)
         vel.append(20)
+        vely.append(0)
         X.append(1280+i*1400+500)
         Y.append(240+r.randint(0,4)*100)
         countenemigos.append(0)
@@ -273,6 +274,7 @@ def game(controles):
         N.append(n)
         Aliens.append(Alien1)
         vel.append(25)
+        vely.append(0)
         X.append(2200 + i * 1200+500)
         Y.append(240 + r.randint(0, 4) * 100)
         countenemigos.append(0)
@@ -283,6 +285,7 @@ def game(controles):
         N.append(n)
         Aliens.append(Alien2)
         vel.append(20)
+        vely.append(0)
         X.append(4280+i*1200+500)
         Y.append(240+r.randint(0,4)*100)
         countenemigos.append(0)
@@ -293,11 +296,12 @@ def game(controles):
         N.append(n)
         Aliens.append(Alien1)
         vel.append(25)
+        vely.append(0)
         X.append(5000 + i * 1200+500)
         Y.append(240 + r.randint(0, 4) * 100)
         countenemigos.append(0)
     daño=np.zeros(len(N))
-    
+    tiempo1=np.zeros(len(N))
     #Nucleo
     pilar,cpilar=p.image.load("images\\Nucleo\\Pilar.png"),[]
     esfera=[]
