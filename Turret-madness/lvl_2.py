@@ -158,6 +158,16 @@ def game(controles):
     canalselect=mixer.Channel(1)
     canalmano=mixer.Channel(2)
     canalpause=mixer.Channel(3)
+    #variables Daniel
+    daños=True
+    nodaño=[]
+    habilidad11=[]
+    habilidad2=[]
+    tiempo11=[]
+    ulinea=[]
+    listax=[]
+    listay=[]
+    #
     daño=[]
     clock=p.time.Clock()
     angulo=0
@@ -226,6 +236,7 @@ def game(controles):
     Alien3attack=[]
     Alien4attack=[]
     vel=[]
+    vely=[]
     enemigos=[]
     vidaenemigo=[]
     vidaenemigototal=[]
