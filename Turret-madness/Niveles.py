@@ -3,6 +3,7 @@ import sys
 import numpy as np
 import lvl_1
 import lvl_2 
+import lvl_3
 p.init()
 p.mixer.init()
 def niveles(controles):
@@ -17,9 +18,9 @@ def niveles(controles):
     tap=p.mixer.Sound('efectos\\boton_tap.wav')
     pop=p.mixer.Sound("Sound\\GUI.wav")
     wrong=p.mixer.Sound("Sound\\wrong.wav")
-    #p.mixer.music.load("effectos\\fondo.ogg")
-    #p.mixer.music.play(-1)
-    #p.mixer.music.set_volume(0.2)
+    p.mixer.music.load("effectos\\fondo.ogg")
+    p.mixer.music.play(-1)
+    p.mixer.music.set_volume(0.2)
     canal1=p.mixer.Channel(0)
     canal2=p.mixer.Channel(1)
     def guardado():
@@ -124,7 +125,7 @@ def niveles(controles):
             k2=0
         if xesc[1]-100<=mx<=xesc[1]+100 and yesc[1]-100<=my<yesc[1]+100:
             if click:
-                #Clases_juego.game() Niv2
+                nvl2=True
                 click=False
             if k3==0:
                 k3+=1
@@ -136,7 +137,7 @@ def niveles(controles):
             k3=0
         if xesc[2]-100<=mx<=xesc[2]+100 and yesc[2]-100<=my<yesc[2]+100:
             if click:
-                #Clases_juego.game() Niv2
+                nvl3=True
                 click=False
             if k4==0:
                 k4+=1
@@ -183,7 +184,87 @@ def niveles(controles):
             else:
                 nvl1=False
                 j[0]=0
-                lvl_1.game(True)
+                lvl_1.game(controles)
+                state1,state2,state3,st1,st2,st3=guardado()
+                states=[state1,state2,state3]
+                est=[]
+                xs=[]
+                ys=[]
+                for i in range(5):
+                    if i <int(st1):
+                        est.append(1)
+                    else:
+                        est.append(0)
+                    xs.append((i)*(200)/5+xesc[0]-80)
+                    ys.append(720/2+80)
+                for i in range(5):
+                    if i<int(st2):
+                        est.append(1)
+                    else:
+                        est.append(0)
+                    xs.append((i)*(200)/5+xesc[1]-80)
+                    ys.append(720/2+80)
+                for i in range(5):
+                    if i <int(st3):
+                        est.append(1)
+                    else:
+                        est.append(0)
+                    xs.append((i)*(200)/5+xesc[2]-80)
+                    ys.append(720/2+80)
+                n=[]
+                for i in range(3):
+                    if states[i]=="Completo":
+                        n.append(1)
+                    else:
+                        n.append(0)
+        if nvl2:
+            if j[0]<1:
+                j[0]+=0.05
+                mostrar(1280/2,720/2, p.image.load("images\\fondo.png").convert(),0,j[0])
+            else:
+                nvl2=False
+                j[0]=0
+                lvl_2.game(controles)
+                state1,state2,state3,st1,st2,st3=guardado()
+                states=[state1,state2,state3]
+                est=[]
+                xs=[]
+                ys=[]
+                for i in range(5):
+                    if i <int(st1):
+                        est.append(1)
+                    else:
+                        est.append(0)
+                    xs.append((i)*(200)/5+xesc[0]-80)
+                    ys.append(720/2+80)
+                for i in range(5):
+                    if i<int(st2):
+                        est.append(1)
+                    else:
+                        est.append(0)
+                    xs.append((i)*(200)/5+xesc[1]-80)
+                    ys.append(720/2+80)
+                for i in range(5):
+                    if i <int(st3):
+                        est.append(1)
+                    else:
+                        est.append(0)
+                    xs.append((i)*(200)/5+xesc[2]-80)
+                    ys.append(720/2+80)
+                n=[]
+                for i in range(3):
+                    if states[i]=="Completo":
+                        n.append(1)
+                    else:
+                        n.append(0)
+        if nvl3:
+            if j[0]<1:
+                j[0]+=0.05
+                mostrar(1280/2,720/2, p.image.load("images\\fondo.png").convert(),0,j[0])
+            else:
+                nvl3=False
+                j[0]=0
+                lvl_3.game(controles)
                 state1,state2,state3,st1,st2,st3=guardado()
                 states=[state1,state2,state3]
                 est=[]
