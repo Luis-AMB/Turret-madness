@@ -4,6 +4,10 @@ import random as r
 import sys
 import math as m
 import numpy as np
+import levelwin
+import gameover
+import nivel
+
 def game(controles):
     Save=open("Save.txt","r")
     state1=Save.readline()
@@ -488,7 +492,7 @@ def game(controles):
                             elif a[i-1]==5:
                                 daño[h]+=20
                             if daño[h]>=vidaenemigototal[h]:
-                                contadormuertes += 1
+                                nivel.contadormuertes += 1
                                 X[h]=5000
                                 Y[h]=5000
                                 daño[h]=0
@@ -539,7 +543,7 @@ def game(controles):
                     if abs(xn[i]-X[k])<40 and yn[i]==Y[k]:
                         X[k]=1280+r.randint(0,len(Aliens))*100
                         Y[k]=240+r.randint(0,4)*100
-                        contadormuertes += 1
+                        nivel.contadormuertes += 1
                     if X[k]<20:
                         estadonucleo[i]=2
                 pantalla.blit(pilar,cpilar[i])
@@ -558,7 +562,9 @@ def game(controles):
                         xn[i],yn[i]=5000,5000
             if estadonucleo[i]==2:
                 pantalla.blit(pilar,cpilar[i])
-                import gameover
+                nivel.contadormuertes = 0
+                nivel.levelok = 1
+                gameover.main_menu()
                 estadonucleo[i]=3
         if movera or moverd or moverl or moverr:
             canalmano.play(soundmano)
@@ -695,7 +701,9 @@ def game(controles):
             pantalla.blit(fondoent,(0,0))  
         
         if contadormuertes == 65:
-            import levelwin
+            nivel.levelok = 1
+            nivel.contadormuertes=0
+            levelwin.main_menu()
             
         #pausa
         while pause:
