@@ -408,24 +408,59 @@ def game(controles):
                     for h in range(len(N)): 
                         if enemigos[h].colision1(balas[i//2].x,balas[i//2].y):
                             balas[i//2].mostrar(balimg[a[i-1]],False,a[i-1],True)
-                            #daño bala 1
-                            if a[i-1]==0 or a[i-1]==1 or a[i-1]==2 or a[i-1]==6:                                
-                                daño[h]+=10
-                            #daño bala 2
-                            elif a[i-1]==3:
-                                daño[h]+=12
-                            #daño bala 3
-                            elif a[i-1]==4:
-                                daño[h]+=100
-                            #daño bala 4
-                            elif a[i-1]==5:
-                                daño[h]+=15
-                            if daño[h]>=vidaenemigototal[h]:
-                                nivel.contadormuertes += 1
-                                X[h]=5000
-                                Y[h]=5000
-                                daño[h]=0
-                                countenemigos[h]=1
+                            for o in range(len(listay)):
+                                if ((listax[o]-balas[i//2].x)**2)+((listay[o]-balas[i//2].y))<2500 and daños:
+                                    daños=False
+                            if daños:        
+                                balas[i//2].mostrar(balimg[a[i-1]],False,a[i-1],True)
+                                #daño bala 1
+                                if a[i-1]==0:
+                                    daño[h]=0
+                                if a[i-1]==1 or a[i-1]==2 or a[i-1]==6:                                
+                                    daño[h]+=3
+                                #daño bala 2
+                                elif a[i-1]==3:
+                                    daño[h]+=12
+                                #daño bala 3
+                                elif a[i-1]==4:
+                                    daño[h]+=100
+                                #daño bala 4
+                                elif a[i-1]==5:
+                                    daño[h]+=15
+                                if (daño[h]-vidaenemigototal[h])<=20:
+                                    linea=True
+                                if daño[h]>=vidaenemigototal[h]:
+                                    contadormuertes += 0
+                                    X[h]=5000
+                                    Y[h]=5000
+                                    daño[h]=0
+                                    countenemigos[h]=0
+                            else:
+                                daños=True
+                                balas[i//2].mostrar(balimg[a[i-1]],False,a[i-1],False)
+                                #daño bala 1
+                                if a[i-1]==0:
+                                    daño[h]=0
+                                if a[i-1]==1 or a[i-1]==2 or a[i-1]==6:                                
+                                    daño[h]+=0
+                                #daño bala 2
+                                elif a[i-1]==3:
+                                    daño[h]+=0
+                                #daño bala 3
+                                elif a[i-1]==4:
+                                    daño[h]+=0
+                                #daño bala 4
+                                elif a[i-1]==5:
+                                    daño[h]+=0
+                                if (daño[h]-vidaenemigototal[h])<=20:
+                                    linea=True
+                                if daño[h]>=vidaenemigototal[h]:
+                                    contadormuertes += 0
+                                    X[h]=5000
+                                    Y[h]=5000
+                                    daño[h]=0
+                                    countenemigos[h]=0
+                                
                 celdas[i].mostrar(a[i],salud[i],sal[i])
             else:
                 if (est[0]==celdas[i][0] and est[1]==celdas[i][1]):
