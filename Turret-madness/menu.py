@@ -76,7 +76,7 @@ def main_menu():
             if click:
                 canal2.play(select)
                 click=False
-                Niveles.niveles()
+                Niveles.niveles(True)
         else:
             k=0
             
