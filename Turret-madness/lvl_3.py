@@ -287,11 +287,10 @@ def game(controles=True,volumen=0.2):
     soundmano=mixer.Sound("Sound\\hand.wav")
     pausesound=mixer.Sound("Sound\\message.ogg")
     bomba=mixer.Sound("Sound\\bombexplosion.ogg")
-    mixer.music.load("Sound\\alienblues.wav")
+    mixer.music.load("Sound\\airship.mp3")
     mixer.music.set_volume(volumen*1.5)
     mixer.music.play(-1)
     canalAliens=mixer.Channel(0)
-    canalAliens.play(Aliensound,-1)
     canalAliens.set_volume(volumen)
     canalselect=mixer.Channel(1)
     canalmano=mixer.Channel(2)
@@ -489,7 +488,7 @@ def game(controles=True,volumen=0.2):
     color=1
     def Pause(a,color):
         hola=font.render(a,True,(color*255,color*255,color*255))
-        cent=hola.get_rect(center=(int(1280/2),int(720/2)))
+        cent=hola.get_rect(center=(int(1280/2),int(720/2-100)))
         pantalla.blit(hola,cent)
     fondoent=p.image.load("images\\fondo.png").convert()
     pause=False
@@ -500,7 +499,6 @@ def game(controles=True,volumen=0.2):
         if cin:
             c1()
             cin=False
-            mixer.music.play(-1)
             canalAliens.play(Aliensound,-1)
         for event in p.event.get():
             if event.type== p.QUIT:
