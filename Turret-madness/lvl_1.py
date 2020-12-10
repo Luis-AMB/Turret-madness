@@ -4,8 +4,9 @@ import random as r
 import sys
 import math as m
 import numpy as np
-import levelwin
-import gameover
+import history1
+#import levelwin
+#import gameover
 import nivel
 
 def game(controles,volumen):
@@ -156,11 +157,8 @@ def game(controles,volumen):
     soundselect=mixer.Sound("Sound\\select.wav")
     soundmano=mixer.Sound("Sound\\hand.wav")
     pausesound=mixer.Sound("Sound\\message.ogg")
-    mixer.music.load("Sound\\alienblues.wav")
     mixer.music.set_volume(volumen*1.5)
-    mixer.music.play(-1)
     canalAliens=mixer.Channel(0)
-    canalAliens.play(Aliensound,-1)
     canalAliens.set_volume(volumen)
     canalselect=mixer.Channel(1)
     canalselect.set_volume(volumen)
@@ -227,6 +225,9 @@ def game(controles,volumen):
     mx=[90,240,390,540,690,840,990]
     for i in range(14):
         menu.append(p.image.load("images\\MenuT"+str(i)+".png"))
+
+    #cinematica
+    cin=True
 
     #Aliens
     Aliens=[]
@@ -426,7 +427,12 @@ def game(controles,volumen):
     contadormuertes = 0
     while Run:
         casilla=False
-        
+        if cin:
+            history1.historia()
+            mixer.music.load("Sound\\alienblues.wav")
+            mixer.music.play(-1)
+            canalAliens.play(Aliensound,-1)
+            cin=False
         for event in p.event.get():
             if event.type== p.QUIT:
                 Run=False
