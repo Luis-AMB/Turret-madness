@@ -538,7 +538,7 @@ def game(controles,volumen):
                                 if (daño[h]-vidaenemigototal[h])<=20:
                                     linea=True
                                 if daño[h]>=vidaenemigototal[h]:
-                                    contadormuertes += 0
+                                    nivel.contadormuertes += 1
                                     X[h]=5000
                                     Y[h]=5000
                                     daño[h]=0
