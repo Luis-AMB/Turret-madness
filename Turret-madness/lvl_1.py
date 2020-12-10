@@ -5,8 +5,8 @@ import sys
 import math as m
 import numpy as np
 import history1
-#import levelwin
-#import gameover
+import levelwin
+import gameover
 import nivel
 
 def game(controles,volumen):
