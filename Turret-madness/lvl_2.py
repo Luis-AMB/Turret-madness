@@ -263,52 +263,137 @@ def game(controles,volumen):
         Alien3.append(p.image.load("images\\Alien3"+str(i)+".png").convert_alpha())
         Alien4.append(p.image.load("images\\Alien4"+str(i)+".png").convert_alpha())
 
-    for i in range(7): #Esta variable controla el número de enemigos en el tablero
+    #N=tipo enemigo_L=inicio fase de nivel
+    for i in range(5): #N4L1
+        vidaenemigo.append(500)
+        vidaenemigototal.append(500)
+        n=4
+        N.append(n)
+        Aliens.append(Alien4)
+        vel.append(5)
+        vely.append(0)
+        habilidad2.append(False)
+        X.append(1680+i*2700)
+        Y.append(240+r.randint(0,4)*100)
+        countenemigos.append(0)
+    for i in range(10): #N2L1
         vidaenemigo.append(200)
         vidaenemigototal.append(200)
         n=2
         N.append(n)
         Aliens.append(Alien2)
-        habilidad2.append(False)
-        vel.append(20)
+        vel.append(5)
         vely.append(0)
-        X.append(1280+i*1400+500)
+        habilidad2.append(False)
+        X.append(3380+i*1400)
         Y.append(240+r.randint(0,4)*100)
         countenemigos.append(0)
-    for i in range(8):
+    for i in range(8): #N2L1
+        vidaenemigo.append(200)
+        vidaenemigototal.append(200)
+        n=2
+        N.append(n)
+        Aliens.append(Alien2)
+        vel.append(5)
+        vely.append(0)
+        habilidad2.append(False)
+        X.append(4380+i*1400)
+        Y.append(240+r.randint(0,4)*100)
+        countenemigos.append(0)
+    for i in range(6): #N2L2
+        vidaenemigo.append(200)
+        vidaenemigototal.append(200)
+        n=2
+        N.append(n)
+        Aliens.append(Alien2)
+        vel.append(5)
+        vely.append(0)
+        habilidad2.append(False)
+        X.append(8100+i*1400)
+        Y.append(240+r.randint(0,4)*100)
+        countenemigos.append(0)
+    for i in range(3): #N2L3
+        vidaenemigo.append(200)
+        vidaenemigototal.append(200)
+        n=2
+        N.append(n)
+        Aliens.append(Alien2)
+        vel.append(5)
+        vely.append(0)
+        habilidad2.append(False)
+        X.append(12600+i*1400)
+        Y.append(240+r.randint(0,4)*100)
+        countenemigos.append(0)
+    for i in range(10):#N1L1
         vidaenemigo.append(150)
         vidaenemigototal.append(150)
         n = 1
         N.append(n)
         Aliens.append(Alien1)
-        habilidad2.append(False)
-        vel.append(25)
+        vel.append(5)
         vely.append(0)
-        X.append(2200 + i * 1200+500)
+        habilidad2.append(False)
+        X.append(3700 + i * 1200)
         Y.append(240 + r.randint(0, 4) * 100)
         countenemigos.append(0)
-    for i in range(4):
-        vidaenemigo.append(200)
-        vidaenemigototal.append(200)
-        n=2
-        N.append(n)
-        Aliens.append(Alien2)
-        vel.append(20)
-        vely.append(0)
-        habilidad2.append(False)
-        X.append(4280+i*1200+500)
-        Y.append(240+r.randint(0,4)*100)
-        countenemigos.append(0)
-    for i in range(6):
+    for i in range(6):#N1L2
         vidaenemigo.append(150)
         vidaenemigototal.append(150)
         n = 1
         N.append(n)
         Aliens.append(Alien1)
-        vel.append(25)
+        vel.append(5)
         vely.append(0)
         habilidad2.append(False)
-        X.append(5000 + i * 1200+500)
+        X.append(8500 + i * 1200+300)
+        Y.append(240 + r.randint(0, 4) * 100)
+        countenemigos.append(0)
+    for i in range(3):#N1L3
+        vidaenemigo.append(150)
+        vidaenemigototal.append(150)
+        n = 1
+        N.append(n)
+        Aliens.append(Alien1)
+        vel.append(5)
+        vely.append(0)
+        habilidad2.append(False)
+        X.append(12100 + i * 1200+500)
+        Y.append(240 + r.randint(0, 4) * 100)
+        countenemigos.append(0)
+    for i in range(10):#N1L1
+        vidaenemigo.append(150)
+        vidaenemigototal.append(150)
+        n = 1
+        N.append(n)
+        Aliens.append(Alien1)
+        vel.append(5)
+        vely.append(0)
+        habilidad2.append(False)
+        X.append(3500 + i * 1200)
+        Y.append(240 + r.randint(0, 4) * 100)
+        countenemigos.append(0)
+    for i in range(6):#N1L2
+        vidaenemigo.append(150)
+        vidaenemigototal.append(150)
+        n = 1
+        N.append(n)
+        Aliens.append(Alien1)
+        vel.append(5)
+        vely.append(0)
+        habilidad2.append(False)
+        X.append(8000 + i * 1200+300)
+        Y.append(240 + r.randint(0, 4) * 100)
+        countenemigos.append(0)
+    for i in range(3):#N1L3
+        vidaenemigo.append(150)
+        vidaenemigototal.append(150)
+        n = 1
+        N.append(n)
+        Aliens.append(Alien1)
+        vel.append(5)
+        vely.append(0)
+        habilidad2.append(False)
+        X.append(11600 + i * 1200+500)
         Y.append(240 + r.randint(0, 4) * 100)
         countenemigos.append(0)
     daño=np.zeros(len(N))
@@ -408,7 +493,7 @@ def game(controles,volumen):
         p.draw.rect(pantalla,(50,50,50),(80,155,990,20))
         p.draw.rect(pantalla,(143,49,255),(80,155,int(990*dinero/4200),20))
         if dinero<3000:
-            dinero+=50
+            dinero+=17
         for l in range(1,7):
             p.draw.rect(pantalla,(0,0,0),(int(80+990*l/7),155,5,20))
         botones_menu=[]
@@ -535,6 +620,8 @@ def game(controles,volumen):
                         X[k]=1280+r.randint(0,len(Aliens))*100
                         Y[k]=240+r.randint(0,4)*100
                         nivel.contadormuertes += 1
+                        if N[k]==4:
+                            xn[i]=5000
                     if X[k]<20:
                         estadonucleo[i]=2
                 pantalla.blit(pilar,cpilar[i])
@@ -691,30 +778,16 @@ def game(controles,volumen):
                         else:
                             if X[j] <= 1500 and N[j] == 1:
                                 vel[j] = 5
-                                #vely[j]=0
                             elif X[j] <= 1500 and N[j] == 2:
                                 vel[j] = 3
-                                """if (vidaenemigo[j]-daño[j])<=100:
-                                    posicion[j]+=1
-                                    if posicion[j]>=8:
-                                        habilidad2[j]=False
-                                    else:
-                                        habilidad2[j]=True"""
-                                #if habilidad2[j]:
-                                #vely[j]=10
-                                #else:
-                                    #vely[j]=0
-                            elif X[j] <= 1500 and N[j] == 3:
-                                vel[j] = 5
-                                #vely[j]=0
+                            elif X[j] <= 1500 and N[j] == 4:
+                                vel[j] = 1
                             if N[j]==1:
-                                vel[j] = 2
-                                #vely[j]=0
+                                vel[j] = 5
                             elif N[j]==2:
                                 vel[j] = 3
-                            if N[j]==3:
-                                vel[j]= 2
-                                #vely[j]=0
+                            elif N[j]==4:
+                                vel[j] = 1
                         
                    
                         
@@ -726,7 +799,7 @@ def game(controles,volumen):
             fondoent.set_alpha(int(countent*255))
             pantalla.blit(fondoent,(0,0))  
         
-        if contadormuertes == 2:
+        if contadormuertes == 69:
             nivel.contadormuertes=0
             nivel.levelok = 2
             levelwin.main_menu()
