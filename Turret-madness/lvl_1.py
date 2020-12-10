@@ -8,7 +8,12 @@ import levelwin
 import gameover
 import nivel
 
-def game(controles):
+def game(controles,volumen):
+    def draw_txt(texto, font, color, surface, x, y):
+        textobj=font.render(texto, True, color)
+        textrect=textobj.get_rect(center=(x,y))
+        #textrect.topleft=( x, y)
+        surface.blit(textobj,textrect)
     Save=open("Save.txt","r")
     state1=Save.readline()
     st1=Save.readline()
@@ -152,13 +157,18 @@ def game(controles):
     soundmano=mixer.Sound("Sound\\hand.wav")
     pausesound=mixer.Sound("Sound\\message.ogg")
     mixer.music.load("Sound\\alienblues.wav")
-    mixer.music.set_volume(0.5)
+    mixer.music.set_volume(volumen*1.5)
     mixer.music.play(-1)
     canalAliens=mixer.Channel(0)
     canalAliens.play(Aliensound,-1)
+    canalAliens.set_volume(volumen)
     canalselect=mixer.Channel(1)
+    canalselect.set_volume(volumen)
     canalmano=mixer.Channel(2)
     canalpause=mixer.Channel(3)
+    canalmano.set_volume(volumen)
+    canalpause.set_volume(volumen)
+    boton=p.image.load("images\\boton.png")
     daño=[]
     clock=p.time.Clock()
     angulo=0
@@ -171,6 +181,8 @@ def game(controles):
     p.display.set_caption("Turret Madness")
     fondo=p.image.load("images\\Fondo1.png").convert()
     cfondo=fondo.get_rect(center=(int(1280/2),int(720/2)))
+    fondo_pause=p.image.load("teclado\\fondo_pausa.jpg").convert_alpha()
+    fondo_pause=p.transform.rotozoom(fondo_pause,0 , 0.3)
     moverd,movera,moverr,moverl=False,False,False,False
     celdas=[]
     turrets=[]
@@ -705,19 +717,44 @@ def game(controles):
             nivel.contadormuertes=0
             levelwin.main_menu()
             
+        k=0
+        click=False
+        #casilla=False
         #pausa
         while pause:
+            Mx,My=p.mouse.get_pos()
             mixer.music.pause()
             canalAliens.pause()
-            if cp<=500:
+            if cp<=100:
                 cp+=1
             else:
                 cp=0
-            if cp<=250:
+            if cp<=50:
                 color=1
             else:
                 color=0
+            center=fondo_pause.get_rect(center=(1280/2,720/2))
+            center_1=boton.get_rect(center=(640,350))
+            pantalla.blit(fondo_pause,center)
+            boton_1=pantalla.blit(boton,center_1)
+            draw_txt("reanudar",font, (0,0,0),pantalla,638,353)
+            draw_txt("reanudar",font, (255,255,255),pantalla,640,350)
             Pause(Pausado,color)
+            if boton_1.collidepoint((Mx,My)):
+                casilla=True
+                pantalla.blit(fondo_pause,center)
+                Pause(Pausado,color)
+                boton_1=pantalla.blit(boton,(center_1[0],center_1[1]-5))
+                draw_txt("reanudar",font, (0,0,0),pantalla,638,348)
+                draw_txt("reanudar",font, (255,255,255),pantalla,640,345)
+                #if k==0:
+                    #canal1.play(tap)
+                   #k+=1
+                if click:
+                    mixer.music.unpause()
+                    canalAliens.unpause()
+                    pause=False
+                    break
             for event in p.event.get():
                 if event.type== p.QUIT:
                     pause=False
@@ -729,6 +766,9 @@ def game(controles):
                             mixer.music.unpause()
                             canalAliens.unpause()
                             pause=False
+                elif event.type==p.MOUSEBUTTONDOWN:
+                    if event.button==1 and casilla:
+                        click=True
             clock.tick(60)
             p.display.update()
         clock.tick(60)
