@@ -757,18 +757,43 @@ def game(controles):
 
             
         #pausa
+        k=0
+        click=False
+       
         while pause:
+            Mx,My=p.mouse.get_pos()
             mixer.music.pause()
             canalAliens.pause()
-            if cp<=500:
+            if cp<=100:
                 cp+=1
             else:
                 cp=0
-            if cp<=250:
+            if cp<=50:
                 color=1
             else:
                 color=0
+            center=fondo_pause.get_rect(center=(1280/2,720/2))
+            center_1=boton.get_rect(center=(640,350))
+            pantalla.blit(fondo_pause,center)
+            boton_1=pantalla.blit(boton,center_1)
+            draw_txt("reanudar",font, (0,0,0),pantalla,638,353)
+            draw_txt("reanudar",font, (255,255,255),pantalla,640,350)
             Pause(Pausado,color)
+            if boton_1.collidepoint((Mx,My)):
+                casilla=True
+                pantalla.blit(fondo_pause,center)
+                Pause(Pausado,color)
+                boton_1=pantalla.blit(boton,(center_1[0],center_1[1]-5))
+                draw_txt("reanudar",font, (0,0,0),pantalla,638,348)
+                draw_txt("reanudar",font, (255,255,255),pantalla,640,345)
+                #if k==0:
+                    #canal1.play(tap)
+                   #k+=1
+                if click:
+                    mixer.music.unpause()
+                    canalAliens.unpause()
+                    pause=False
+                    break
             for event in p.event.get():
                 if event.type== p.QUIT:
                     pause=False
@@ -780,8 +805,10 @@ def game(controles):
                             mixer.music.unpause()
                             canalAliens.unpause()
                             pause=False
+                elif event.type==p.MOUSEBUTTONDOWN:
+                    if event.button==1 and casilla:
+                        click=True
             clock.tick(60)
             p.display.update()
         clock.tick(60)
         p.display.update()
-game(True)
