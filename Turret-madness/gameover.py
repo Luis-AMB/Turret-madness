@@ -2,6 +2,7 @@ import pygame as p
 import sys
 import lvl_1
 import lvl_2
+import lvl_3
 import nivel
 import control
 import Niveles
@@ -74,9 +75,11 @@ def main_menu():
                 canal2.play(select)
                 running = False
                 if nivel.levelok == 1:
-                    lvl_1.game(True)
+                    lvl_1.game(True,0.2)
                 elif nivel.levelok == 2:
-                    lvl_2.game(True)
+                    lvl_2.game(True,0.2)
+                elif nivel.levelok == 3:
+                    lvl_3.game(True,0.2)
                 sys.exit()
                 clock.tick(60)
         if boton_2.collidepoint((mx, my)):
