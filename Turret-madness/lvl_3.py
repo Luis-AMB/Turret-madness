@@ -739,6 +739,8 @@ def game(controles=True):
             Save.write(st3)
             Save.close()
             save=False
+            mixer.music.pause()
+            canalAliens.pause()
             c2()
             break
 
