@@ -225,7 +225,7 @@ def niveles(controles,volumen):
             else:
                 nvl2=False
                 j[0]=0
-                lvl_2.game(controles)
+                lvl_2.game(controles,volumen)
                 state1,state2,state3,st1,st2,st3=guardado()
                 states=[state1,state2,state3]
                 est=[]
@@ -265,7 +265,7 @@ def niveles(controles,volumen):
             else:
                 nvl3=False
                 j[0]=0
-                lvl_3.game(controles)
+                lvl_3.game(controles,volumen)
                 state1,state2,state3,st1,st2,st3=guardado()
                 states=[state1,state2,state3]
                 est=[]
