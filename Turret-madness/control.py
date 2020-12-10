@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Nov 23 18:09:18 2020
-
-@author: Keven
-"""
 import pygame as p
 import sys
 import lvl_1
