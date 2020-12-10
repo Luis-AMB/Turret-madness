@@ -5,8 +5,8 @@ import control
 import lvl_1
 import lvl_2 
 import lvl_3
+
 p.init()
-p.mixer.init()
 def niveles(controles,volumen):
     p.display.set_caption("Tower-Madness")
     font_1= p.font.Font('Fuentes\\spacerunnertwoital.TTF',100)
@@ -19,9 +19,9 @@ def niveles(controles,volumen):
     tap=p.mixer.Sound('efectos\\boton_tap.wav')
     pop=p.mixer.Sound("Sound\\GUI.wav")
     wrong=p.mixer.Sound("Sound\\wrong.wav")
-    p.mixer.music.load("effectos\\fondo.ogg")
-    p.mixer.music.play(-1)
-    p.mixer.music.set_volume(volumen)
+    #p.mixer.music.load("effectos\\fondo.ogg")
+    #p.mixer.music.play(-1)
+    #p.mixer.music.set_volume(volumen)
     canal1=p.mixer.Channel(0)
     canal2=p.mixer.Channel(1)
     def guardado():
@@ -114,8 +114,10 @@ def niveles(controles,volumen):
         pantalla.blit(bg_image,(0,0))
         if xesc[0]-100<=mx<=xesc[0]+100 and yesc[0]-100<=my<yesc[0]+100:
             if click:
-                nvl1=True
-                control.controles_1(controles,volumen)
+                if states[0]=="Disponible" or states[0]=="Completo":
+                    nvl1=True
+                if int(st1)==0:
+                    control.controles_1(controles,volumen)
             if k2==0:
                 k2+=1
                 if states[0]=="Disponible" or states[0]=="Completo":
@@ -126,7 +128,8 @@ def niveles(controles,volumen):
             k2=0
         if xesc[1]-100<=mx<=xesc[1]+100 and yesc[1]-100<=my<yesc[1]+100:
             if click:
-                nvl2=True
+                if states[1]=="Disponible" or states[1]=="Completo":
+                    nvl2=True
                 click=False
             if k3==0:
                 k3+=1
@@ -138,7 +141,8 @@ def niveles(controles,volumen):
             k3=0
         if xesc[2]-100<=mx<=xesc[2]+100 and yesc[2]-100<=my<yesc[2]+100:
             if click:
-                nvl3=True
+                if states[2]=="Disponible" or states[2]=="Completo":
+                    nvl3=True
                 click=False
             if k4==0:
                 k4+=1
@@ -185,7 +189,7 @@ def niveles(controles,volumen):
             else:
                 nvl1=False
                 j[0]=0
-                lvl_1.game(controles)
+                lvl_1.game(controles,volumen)
                 state1,state2,state3,st1,st2,st3=guardado()
                 states=[state1,state2,state3]
                 est=[]
@@ -219,12 +223,12 @@ def niveles(controles,volumen):
                     else:
                         n.append(0)
         if nvl2:
-            if j[0]<1:
-                j[0]+=0.05
+            if j[1]<1:
+                j[1]+=0.05
                 mostrar(1280/2,720/2, p.image.load("images\\fondo.png").convert(),0,j[0])
             else:
                 nvl2=False
-                j[0]=0
+                j[1]=0
                 lvl_2.game(controles,volumen)
                 state1,state2,state3,st1,st2,st3=guardado()
                 states=[state1,state2,state3]
@@ -259,12 +263,12 @@ def niveles(controles,volumen):
                     else:
                         n.append(0)
         if nvl3:
-            if j[0]<1:
-                j[0]+=0.05
+            if j[2]<1:
+                j[2]+=0.05
                 mostrar(1280/2,720/2, p.image.load("images\\fondo.png").convert(),0,j[0])
             else:
                 nvl3=False
-                j[0]=0
+                j[2]=0
                 lvl_3.game(controles,volumen)
                 state1,state2,state3,st1,st2,st3=guardado()
                 states=[state1,state2,state3]
