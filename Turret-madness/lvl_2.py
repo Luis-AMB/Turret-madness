@@ -123,8 +123,6 @@ def game(controles,volumen):
         def colision1(self,kk,mm):
             if ((self.x-kk)**2+(self.y-mm)**2)<=30**2:
                 return True
-            elif ((self.x-kk)**2+(self.y-mm)**2)<=25**2:
-                return False
             else:
                 return False
         def vida(self,daño=0):
