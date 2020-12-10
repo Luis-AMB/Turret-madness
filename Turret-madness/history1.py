@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Nov 24 04:03:17 2020
-
-@author: familia
-"""
 import pygame as p
 from pygame import mixer
 def historia():    
@@ -282,4 +276,3 @@ def historia():
         clock.tick(12)
         p.display.update()
         k=k+1
-historia()
