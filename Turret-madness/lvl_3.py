@@ -2,6 +2,9 @@ import pygame as p
 from pygame import mixer
 import random as r
 import sys
+import gameover
+import gamewin
+import nivel
 import math as m
 import numpy as np
 def c1():
@@ -576,6 +579,7 @@ def game(controles=True,volumen=0.2):
                                 vidaenemigo[h]-=daño[a[i-1]]
                             balas[i//2].mostrar(balimg[a[i-1]],False,a[i-1],True)
                             if vidaenemigo[h]<=0:
+                                nivel.contadormuertes +=1
                                 X[h]=5000
                                 Y[h]=5000
                                 countenemigos[h]=1
@@ -632,6 +636,7 @@ def game(controles=True,volumen=0.2):
                     if abs(xn[i]-X[k])<40 and yn[i]==Y[k]:
                         X[k]=5000
                         Y[k]=5000
+                        nivel.contadormuertes +=1
                         countenemigos[k]=1
                     if X[k]<20:
                         estadonucleo[i]=2
@@ -651,6 +656,9 @@ def game(controles=True,volumen=0.2):
                         xn[i],yn[i]=5000,5000
             elif estadonucleo[i]==2:
                 pantalla.blit(pilar,cpilar[i])
+                nivel.levelok = 3
+                nivel.contadormuertes = 0
+                gameover.main_menu()
                 estadonucleo[i]=3              
             elif estadonucleo[i]==3:
                 pantalla.blit(pilar,cpilar[i])
@@ -806,6 +814,10 @@ def game(controles=True,volumen=0.2):
             fondoent.set_alpha(int(countent*255))
             pantalla.blit(fondoent,(0,0))  
             
+        if nivel.contadormuertes == 3:
+            nivel.contadormuertes = 0
+            gamewin.main_menu()
+        
         click=False
         #pausa
         while pause:
