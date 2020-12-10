@@ -2,6 +2,7 @@ import pygame as p
 import sys
 import os
 import imp
+import menu
 p.init()
 p.mixer.init()
 font = p.font.Font('Fuentes\\spacerunnertwoital.TTF', 35)
