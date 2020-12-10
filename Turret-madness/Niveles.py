@@ -19,9 +19,9 @@ def niveles(controles,volumen):
     tap=p.mixer.Sound('efectos\\boton_tap.wav')
     pop=p.mixer.Sound("Sound\\GUI.wav")
     wrong=p.mixer.Sound("Sound\\wrong.wav")
-    #p.mixer.music.load("effectos\\fondo.ogg")
-    #p.mixer.music.play(-1)
-    #p.mixer.music.set_volume(volumen)
+    p.mixer.music.load("effectos\\fondo.ogg")
+    p.mixer.music.play(-1)
+    p.mixer.music.set_volume(volumen)
     canal1=p.mixer.Channel(0)
     canal2=p.mixer.Channel(1)
     def guardado():
