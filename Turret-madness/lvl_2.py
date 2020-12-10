@@ -123,6 +123,8 @@ def game(controles,volumen):
         def colision1(self,kk,mm):
             if ((self.x-kk)**2+(self.y-mm)**2)<=30**2:
                 return True
+            elif ((self.x-kk)**2+(self.y-mm)**2)<=25**2:
+                return False
             else:
                 return False
         def vida(self,daño=0):
@@ -430,7 +432,7 @@ def game(controles,volumen):
                     balas[i//2].mostrar(balimg[a[i-1]],True,a[i-1])
                     for h in range(len(N)): 
                         if enemigos[h].colision1(balas[i//2].x,balas[i//2].y):
-                            balas[i//2].mostrar(balimg[a[i-1]],False,a[i-1],True)
+                            #balas[i//2].mostrar(balimg[a[i-1]],False,a[i-1],True)
                             for o in range(len(listay)):
                                 if ((listax[o]-balas[i//2].x)**2)+((listay[o]-balas[i//2].y))<2500 and daños:
                                     daños=False
@@ -440,7 +442,7 @@ def game(controles,volumen):
                                 if a[i-1]==0:
                                     daño[h]=0
                                 if a[i-1]==1 or a[i-1]==2 or a[i-1]==6:                                
-                                    daño[h]+=3
+                                    daño[h]+=10
                                 #daño bala 2
                                 elif a[i-1]==3:
                                     daño[h]+=12
@@ -610,7 +612,7 @@ def game(controles,volumen):
             al1=0
         #este pedazo se encarga de mostrar los enemigos caminando
         enemigos=[]
-        for i in range(len(Aliens)):
+        for i in range(len(N)):
             enemigos.append(enemigo(X[i],Y[i],vidaenemigo[i]-daño[i],vidaenemigototal[i]))
             Y[i]+=vely[i]
             if vel[i]!=0:
