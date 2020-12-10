@@ -823,4 +823,3 @@ def game(controles=True):
             p.display.update()
         clock.tick(60)
         p.display.update()
-game()
