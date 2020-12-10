@@ -73,9 +73,9 @@ def main_menu():
                 canal2.play(select)
                 runing = False
                 if nivel.levelok == 1:
-                    lvl_2.game(True)
+                    lvl_2.game(True,0.2)
                 elif nivel.levelok ==2:
-                    lvl_3.game(True)
+                    lvl_3.game(True,0.2)
 
                 clock.tick(60)
         if boton_2.collidepoint((mx, my)):
