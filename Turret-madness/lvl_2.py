@@ -710,44 +710,13 @@ def game(controles,volumen):
                                 #vely[j]=0
                             elif N[j]==2:
                                 vel[j] = 3
-                                #if habilidad2[j]:
-                                #vely[j]=10
-                                #else:
-                                    #vely[j]=0
                             if N[j]==3:
                                 vel[j]= 2
                                 #vely[j]=0
                         
-                        #if vidaenemigo[j]-daño[j]<=100:
-                        if (vidaenemigo[j]-daño[j])<=100:
-                            if N[j]==2:
-                                if Y[j]==640:
-                                    ulinea[j]=True
-                                tiempo1[j]+=1
-                                if tiempo1[j]<5:
-                                    habilidad2[j]=True
-                                    #print(tiempo1)
-                                    #print(habilidad2)
-                                else:
-                                    habilidad2[j]=False
-                                if vel[j]==0:
-                                    habilidad2[j]=False
-                            if N[j]==2:
-                                #print(habilidad2[j])
-                                if habilidad2[j]:
-                                    if ulinea[j]:
-                                        vely[j]=-10
-                                    else:
-                                        vely[j]=10
-                                else:
-                                    vely[j]=0
-                            if N[j]==1 or N[j]==3:
-                                vely[j]=0
-                        else:
-                            if N[j]==1 or N[j]==3:
-                                vely[j]=0
+                   
+                        
             X[j]-=vel[j]
-            Y[j]+=vely[j]
             
         
         if countent>0:
