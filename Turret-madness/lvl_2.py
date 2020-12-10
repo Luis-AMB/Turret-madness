@@ -7,7 +7,7 @@ import numpy as np
 import levelwin
 import gameover
 import nivel
-def game(controles):
+def game(controles,volumen):
     Save=open("Save.txt","r")
     state1=Save.readline()
     st1=Save.readline()
@@ -151,13 +151,18 @@ def game(controles):
     soundmano=mixer.Sound("Sound\\hand.wav")
     pausesound=mixer.Sound("Sound\\message.ogg")
     mixer.music.load("Sound\\nivel 2.mp3")
-    mixer.music.set_volume(0.5)
+    mixer.music.set_volume(volumen*1.5)
     mixer.music.play(-1)
     canalAliens=mixer.Channel(0)
     canalAliens.play(Aliensound,-1)
+    canalAliens.set_volume(volumen)
     canalselect=mixer.Channel(1)
     canalmano=mixer.Channel(2)
     canalpause=mixer.Channel(3)
+    canalbomba=mixer.Channel(4)
+    canalmano.set_volume(volumen)
+    canalpause.set_volume(volumen)
+    canalbomba.set_volume(volumen)
     #variables Daniel
     daños=True
     nodaño=[]
