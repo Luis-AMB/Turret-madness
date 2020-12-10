@@ -1,12 +1,13 @@
 import pygame as p
 import sys
 import numpy as np
+import control
 import lvl_1
 import lvl_2 
 import lvl_3
 p.init()
 p.mixer.init()
-def niveles(controles):
+def niveles(controles,volumen):
     p.display.set_caption("Tower-Madness")
     font_1= p.font.Font('Fuentes\\spacerunnertwoital.TTF',100)
     clock=p.time.Clock()
@@ -20,7 +21,7 @@ def niveles(controles):
     wrong=p.mixer.Sound("Sound\\wrong.wav")
     p.mixer.music.load("effectos\\fondo.ogg")
     p.mixer.music.play(-1)
-    p.mixer.music.set_volume(0.2)
+    p.mixer.music.set_volume(volumen)
     canal1=p.mixer.Channel(0)
     canal2=p.mixer.Channel(1)
     def guardado():
@@ -106,16 +107,15 @@ def niveles(controles):
             elif event.type==p.MOUSEBUTTONDOWN:
                 if event.button==1:
                     click=True
-            if event.type==p.MOUSEBUTTONUP:
+            elif event.type==p.MOUSEBUTTONUP:
                 if event.button==1:
                     click=False
         mx,my=p.mouse.get_pos()
         pantalla.blit(bg_image,(0,0))
         if xesc[0]-100<=mx<=xesc[0]+100 and yesc[0]-100<=my<yesc[0]+100:
             if click:
-                if states[0]=="Disponible" or states[0]=="Completo":
-                    nvl1=True
-                click=False
+                nvl1=True
+                control.controles_1(controles,volumen)
             if k2==0:
                 k2+=1
                 if states[0]=="Disponible" or states[0]=="Completo":
@@ -126,8 +126,7 @@ def niveles(controles):
             k2=0
         if xesc[1]-100<=mx<=xesc[1]+100 and yesc[1]-100<=my<yesc[1]+100:
             if click:
-                if states[1]=="Disponible" or states[1]=="Completo":
-                    nvl2=True
+                nvl2=True
                 click=False
             if k3==0:
                 k3+=1
@@ -139,8 +138,7 @@ def niveles(controles):
             k3=0
         if xesc[2]-100<=mx<=xesc[2]+100 and yesc[2]-100<=my<yesc[2]+100:
             if click:
-                if states[2]=="Disponible" or states[2]=="Completo":
-                    nvl3=True
+                nvl3=True
                 click=False
             if k4==0:
                 k4+=1
@@ -149,7 +147,7 @@ def niveles(controles):
                 else:
                     canal2.play(wrong)
         else:
-            k4=0        
+            k4=0
         for i in range(3):
             if states[i]=="Completo" or states[i]=="Disponible":
                 if xesc[i]-100<=mx<=xesc[i]+100 and yesc[i]-100<=my<yesc[i]+100:
@@ -221,12 +219,12 @@ def niveles(controles):
                     else:
                         n.append(0)
         if nvl2:
-            if j[1]<1:
-                j[1]+=0.05
+            if j[0]<1:
+                j[0]+=0.05
                 mostrar(1280/2,720/2, p.image.load("images\\fondo.png").convert(),0,j[0])
             else:
                 nvl2=False
-                j[1]=0
+                j[0]=0
                 lvl_2.game(controles)
                 state1,state2,state3,st1,st2,st3=guardado()
                 states=[state1,state2,state3]
@@ -261,12 +259,12 @@ def niveles(controles):
                     else:
                         n.append(0)
         if nvl3:
-            if j[2]<1:
-                j[2]+=0.05
+            if j[0]<1:
+                j[0]+=0.05
                 mostrar(1280/2,720/2, p.image.load("images\\fondo.png").convert(),0,j[0])
             else:
                 nvl3=False
-                j[2]=0
+                j[0]=0
                 lvl_3.game(controles)
                 state1,state2,state3,st1,st2,st3=guardado()
                 states=[state1,state2,state3]
