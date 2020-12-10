@@ -262,6 +262,7 @@ def game(controles):
         n=2
         N.append(n)
         Aliens.append(Alien2)
+        habilidad2.append(False)
         vel.append(20)
         vely.append(0)
         X.append(1280+i*1400+500)
@@ -273,6 +274,7 @@ def game(controles):
         n = 1
         N.append(n)
         Aliens.append(Alien1)
+        habilidad2.append(False)
         vel.append(25)
         vely.append(0)
         X.append(2200 + i * 1200+500)
@@ -286,6 +288,7 @@ def game(controles):
         Aliens.append(Alien2)
         vel.append(20)
         vely.append(0)
+        habilidad2.append(False)
         X.append(4280+i*1200+500)
         Y.append(240+r.randint(0,4)*100)
         countenemigos.append(0)
@@ -297,6 +300,7 @@ def game(controles):
         Aliens.append(Alien1)
         vel.append(25)
         vely.append(0)
+        habilidad2.append(False)
         X.append(5000 + i * 1200+500)
         Y.append(240 + r.randint(0, 4) * 100)
         countenemigos.append(0)
@@ -345,6 +349,16 @@ def game(controles):
     Run=True
     click=False
     contadormuertes = 0
+    for i in range(len(N)):
+        habilidad11.append(False)
+        tiempo11.append(0)
+        if N[i]==1:
+            habilidad11[i]=True
+    posicion=[]
+    for i in range(len(N)):
+        posicion.append(0)   
+    for i in range(len(N)):
+        ulinea.append(False) 
     while Run:
         casilla=False
         
